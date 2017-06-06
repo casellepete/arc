@@ -124,6 +124,13 @@ Avatar.store(%Plug.Upload{filename: "file.png", path: "/a/b/c"}) #=> {:ok, "file
 # Store a file from a connection body
 {:ok, data, _conn} = Plug.Conn.read_body(conn)
 Avatar.store(%{filename: "file.png", binary: data})
+
+# Store a file using dynamic aws options
+aws_opts = [ access_key_id: ["myaccesskeyyyydfklaskfjk", :instance_role],
+             secret_access_key: ["mysecretkeyyyyasfjajsflkjkl", :instance_role],
+             scheme: "https://", 
+             host: "s3.amazonaws.com", 
+             region: "us-east-2"
 ```
 
 Example usage as a file attached to a `scope`:
